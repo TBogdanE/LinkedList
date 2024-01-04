@@ -69,7 +69,17 @@ class LinkedList {
   }
 
   pop() {
-    //remove the last node
+    let currentNode = this.firstNode;
+    let previousNode = null;
+
+    while (currentNode.nextNode) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+    }
+
+    previousNode.nextNode = null;
+
+    this.size();
   }
 
   contains(value) {
@@ -99,4 +109,5 @@ list.head();
 list.size();
 list.tail();
 list.atIndex(2);
+list.pop();
 console.log(list);
