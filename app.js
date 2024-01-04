@@ -113,7 +113,15 @@ class LinkedList {
   }
 
   toString() {
-    //prints the linkedlist obj as a string
+    let currentNode = this.firstNode;
+    let string = "";
+
+    while (currentNode) {
+      string += `( ${currentNode.value} ) -> `;
+      currentNode = currentNode.nextNode;
+    }
+    string += currentNode;
+    console.log("String:", string);
   }
 
   inserAt(value, index) {}
@@ -136,4 +144,5 @@ list.contains(170);
 list.contains(17);
 list.find(17);
 list.find(170);
+list.toString();
 console.log(list);
