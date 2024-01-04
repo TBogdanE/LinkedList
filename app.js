@@ -87,17 +87,29 @@ class LinkedList {
 
     while (currentNode) {
       if (currentNode.value == value) {
-        console.log("true");
+        console.log(`True - ${value} is found inside the nodes`);
         return true;
       }
       currentNode = currentNode.nextNode;
     }
-    console.log("false");
+    console.log(`False - ${value} is found inside the nodes`);
     return false;
   }
 
   find(value) {
-    //returns index of node containing the value
+    let currentNode = this.firstNode;
+    let index = 0;
+
+    while (currentNode) {
+      if (currentNode.value == value) {
+        console.log(`Index of value ${value} is: ${index}`);
+        return;
+      }
+      currentNode = currentNode.nextNode;
+      index += 1;
+    }
+    console.log(`Value ${value} doesn't exist in the nodes`);
+    return;
   }
 
   toString() {
@@ -122,4 +134,6 @@ list.atIndex(2);
 list.pop();
 list.contains(170);
 list.contains(17);
+list.find(17);
+list.find(170);
 console.log(list);
