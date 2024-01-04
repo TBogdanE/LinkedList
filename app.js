@@ -30,19 +30,42 @@ class LinkedList {
   }
 
   size() {
-    //return total
+    let count = 0;
+    let currentNode = this.firstNode;
+    while (currentNode) {
+      console.log(`${count}: ${currentNode.value}`);
+      count += 1;
+      currentNode = currentNode.nextNode;
+    }
+    console.log(`Size of the linked list is: ${count}\n`);
+    return count;
   }
 
   head() {
-    console.log("head:", this.firstNode.value);
+    console.log(`Head element:${this.firstNode.value}\n`);
   }
 
   tail() {
-    //return the last node
+    let currentNode = this.firstNode;
+    while (currentNode.nextNode) {
+      currentNode = currentNode.nextNode;
+    }
+
+    console.log(`Last node: ${currentNode.value}\n`);
   }
 
   atIndex(value) {
-    //return the node at specific index
+    let currentNode = this.firstNode;
+
+    if (value > this.size()) {
+      console.error("Index is bigger than the list size");
+      return;
+    }
+
+    for (let i = 0; i <= value; i++) {
+      currentNode = currentNode.nextNode;
+    }
+    console.log(`Element at index ${value}: ${currentNode.value}`);
   }
 
   pop() {
@@ -71,5 +94,9 @@ list.append(2);
 list.append(5);
 list.append(17);
 list.prepend(0);
+list.append(90);
 list.head();
+list.size();
+list.tail();
+list.atIndex(2);
 console.log(list);
