@@ -23,8 +23,10 @@ class LinkedList {
     }
     current.nextNode = tail;
   }
+
   prepend(value) {
     //adds value node at start of the list
+    this.firstNode = new Node(value, this.firstNode);
   }
 
   size() {
@@ -67,5 +69,7 @@ class LinkedList {
 const list = new LinkedList();
 list.append(2);
 list.append(5);
+list.append(17);
+list.prepend(0);
 list.head();
 console.log(list);
