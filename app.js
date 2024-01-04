@@ -83,7 +83,17 @@ class LinkedList {
   }
 
   contains(value) {
-    //return true if passed in value is in the list
+    let currentNode = this.firstNode;
+
+    while (currentNode) {
+      if (currentNode.value == value) {
+        console.log("true");
+        return true;
+      }
+      currentNode = currentNode.nextNode;
+    }
+    console.log("false");
+    return false;
   }
 
   find(value) {
@@ -110,4 +120,6 @@ list.size();
 list.tail();
 list.atIndex(2);
 list.pop();
+list.contains(170);
+list.contains(17);
 console.log(list);
