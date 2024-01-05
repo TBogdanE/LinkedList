@@ -146,7 +146,32 @@ class LinkedList {
     }
   }
 
-  removeAt(index) {}
+  removeAt(index) {
+    let currentNode = this.firstNode;
+    let previousNode = null;
+    let count = 0;
+    let forwardNode = null;
+
+    if (index >= this.size()) {
+      console.error("Index is bigger than the list size");
+      return;
+    }
+
+    while (count <= index) {
+      previousNode = currentNode;
+      currentNode = currentNode.nextNode;
+      forwardNode = currentNode.nextNode;
+
+      if (count === index-1) {
+        console.log("RRR:", currentNode.value);
+        previousNode.nextNode = forwardNode;
+        this.size();
+        return;
+      }
+
+      count += 1;
+    }
+  }
 }
 
 const list = new LinkedList();
@@ -165,6 +190,7 @@ list.contains(17);
 list.find(17);
 list.find(170);
 list.toString();
-list.inserAt(100, 2);
-list.inserAt(179, 1);
+//list.inserAt(100, 2);
+//list.inserAt(179, 1);
+list.removeAt(1);
 console.log(list);
