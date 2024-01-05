@@ -25,18 +25,19 @@ class LinkedList {
   }
 
   prepend(value) {
-    //adds value node at start of the list
     this.firstNode = new Node(value, this.firstNode);
   }
 
   size() {
     let count = 0;
     let currentNode = this.firstNode;
+
     while (currentNode) {
       console.log(`${count}: ${currentNode.value}`);
       count += 1;
       currentNode = currentNode.nextNode;
     }
+
     console.log(`Size of the linked list is: ${count}\n`);
     return count;
   }
@@ -55,16 +56,17 @@ class LinkedList {
   }
 
   atIndex(value) {
-    let currentNode = this.firstNode;
-
     if (value > this.size()) {
       console.error("Index is bigger than the list size");
       return;
     }
 
+    let currentNode = this.firstNode;
+
     for (let i = 0; i <= value; i++) {
       currentNode = currentNode.nextNode;
     }
+
     console.log(`Element at index ${value}: ${currentNode.value}`);
   }
 
@@ -78,7 +80,6 @@ class LinkedList {
     }
 
     previousNode.nextNode = null;
-
     this.size();
   }
 
@@ -92,6 +93,7 @@ class LinkedList {
       }
       currentNode = currentNode.nextNode;
     }
+
     console.log(`False - ${value} is found inside the nodes`);
     return false;
   }
@@ -108,6 +110,7 @@ class LinkedList {
       currentNode = currentNode.nextNode;
       index += 1;
     }
+
     console.log(`Value ${value} doesn't exist in the nodes`);
     return;
   }
@@ -116,10 +119,16 @@ class LinkedList {
     let currentNode = this.firstNode;
     let string = "";
 
+    if (!currentNode) {
+      string += "null";
+      return;
+    }
+    
     while (currentNode) {
       string += `( ${currentNode.value} ) -> `;
       currentNode = currentNode.nextNode;
     }
+
     string += currentNode;
     console.log("String:", string);
   }
@@ -133,14 +142,14 @@ class LinkedList {
       return;
     }
 
-    while (count <= index) {
-      if (count == index) {
+    while (count < index) {
+      if (count == index - 1) {
         let nextNode = currentNode.nextNode;
         let newNode = new Node(value, nextNode);
         currentNode.nextNode = newNode;
-
         this.toString();
       }
+
       currentNode = currentNode.nextNode;
       count += 1;
     }
@@ -157,15 +166,17 @@ class LinkedList {
       return;
     }
 
-    while (count <= index) {
+    while (count < index) {
       previousNode = currentNode;
       currentNode = currentNode.nextNode;
       forwardNode = currentNode.nextNode;
 
-      if (count === index-1) {
-        console.log("RRR:", currentNode.value);
+      if (count === index - 1) {
+        console.log(
+          `Value ${currentNode.value} locate at index ${index} was removed`
+        );
         previousNode.nextNode = forwardNode;
-        this.size();
+        this.toString();
         return;
       }
 
@@ -175,6 +186,7 @@ class LinkedList {
 }
 
 const list = new LinkedList();
+
 list.append(2);
 list.append(5);
 list.append(17);
@@ -190,7 +202,6 @@ list.contains(17);
 list.find(17);
 list.find(170);
 list.toString();
-//list.inserAt(100, 2);
-//list.inserAt(179, 1);
-list.removeAt(1);
-console.log(list);
+list.inserAt(100, 2);
+list.inserAt(179, 1);
+list.removeAt(3);
